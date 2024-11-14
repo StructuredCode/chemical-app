@@ -1,3 +1,11 @@
 ::ng-deep .custom-green {
  color:green;   
 }
+
+button.button-bens-blue:hover {
+    color: var(--bens-blue);
+}
+
+button.button-bens-red:hover {
+    color: var(--bens-red);
+}
