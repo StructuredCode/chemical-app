@@ -1,0 +1,98 @@
+{
+  "data": [
+    {
+      "id": "523551",
+      "product_name": "Test Product 1",
+      "product_company": 111111,
+      "logo": "assets/img/bens-logo.png",
+      "created_by": "Test User 1",
+      "modified_by": "Test User 1",
+      "modified_on": "2024-09-12 18:08:12",
+      "languages": "<span class=\"custom-green\">en</span>, <span class=\"custom-green\">hr</span>, <span class=\"custom-green\">sl</span>"
+    },
+    {
+      "id": "523552",
+      "product_name": "Test Product 2",
+      "product_company": 222222,
+      "logo": "assets/img/bens-logo.png",
+      "created_by": "Test User 2",
+      "modified_by": "Test User 2",
+      "modified_on": "2023-08-19 07:19:32",
+      "languages": "<span class=\"custom-green\">sl</span>"
+    },
+    {
+      "id": "523553",
+      "product_name": "Test Product 3",
+      "product_company": 111111,
+      "logo": "assets/img/bens-logo.png",
+      "created_by": "Test User 3",
+      "modified_by": "Test User 3",
+      "modified_on": "2022-03-03 08:19:11",
+      "languages": "<span class=\"custom-green\">hr</span>, <span class=\"custom-green\">sl</span>"
+    },
+    {
+      "id": "523554",
+      "product_name": "Test Product 4",
+      "product_company": 222222,
+      "logo": "assets/img/bens-logo.png",
+      "created_by": "Test User 2",
+      "modified_by": "Test User 3",
+      "modified_on": "2024-09-10 08:40:06",
+      "languages": null
+    },
+    {
+      "id": "523555",
+      "product_name": "Test Product 5",
+      "product_company": 333333,
+      "logo": "assets/img/bens-logo.png",
+      "created_by": "Test User 1",
+      "languages": null
+    },
+    {
+      "id": "523556",
+      "product_name": "Test Product 6",
+      "product_company": 222222,
+      "logo": "assets/img/bens-logo.png",
+      "created_by": "Test User 1",
+      "modified_by": "Test User 1",
+      "modified_on": "2024-02-19 09:19:10",
+      "languages": "<span class=\"custom-green\">en</span>, <span class=\"custom-green\">hr</span>, <span class=\"custom-green\">sl</span>"
+    },
+    {
+      "id": "523557",
+      "product_name": "Test Product 7",
+      "product_company": 222222,
+      "logo": "assets/img/bens-logo.png",
+      "created_by": "Test User 2",
+      "modified_by": "Test User 2",
+      "modified_on": "2024-05-11 11:31:13",
+      "languages": "<span class=\"custom-green\">sl</span>"
+    },
+    {
+      "id": "523558",
+      "product_name": "Test Product 8",
+      "product_company": 333333,
+      "logo": "assets/img/bens-logo.png",
+      "created_by": "Test User 3",
+      "languages": null
+    },
+    {
+      "id": "523559",
+      "product_name": "Test Product 9",
+      "product_company": 333333,
+      "logo": "assets/img/bens-logo.png",
+      "created_by": "Test User 14",
+      "languages": null
+    },
+    {
+      "id": "523560",
+      "product_name": "Test Product 10",
+      "product_company": 111111,
+      "logo": "assets/img/bens-logo.png",
+      "created_by": "Test User 10",
+      "modified_by": "Test User 12",
+      "modified_on": "2023-07-20 13:23:05",
+      "languages": null
+    }
+  ]
+}

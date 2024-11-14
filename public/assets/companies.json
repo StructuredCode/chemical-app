@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "id": 111111,
+      "name": "Test Company 1"
+    },
+    {
+      "id": 222222,
+      "name": "Test Company 2"
+    },
+    {
+      "id": 333333,
+      "name": "Test Company 3"
+    }
+  ]
+}
