@@ -1,0 +1,58 @@
+<table mat-table [dataSource]="products">
+  <!-- Id -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+    <mat-cell *matCellDef="let product">{{ product.id }}</mat-cell>
+  </ng-container>
+
+  <!-- Name -->
+  <ng-container matColumnDef="product_name">
+    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+    <mat-cell *matCellDef="let product">{{ product.product_name }}</mat-cell>
+  </ng-container>
+
+  <!-- Logo -->
+  <ng-container matColumnDef="logo">
+    <mat-header-cell *matHeaderCellDef>Logo</mat-header-cell>
+    <mat-cell *matCellDef="let product">
+      <img [src]="product.logo" alt="product-logo" />
+    </mat-cell>
+  </ng-container>
+
+  <!-- Created by -->
+  <ng-container matColumnDef="created_by">
+    <mat-header-cell *matHeaderCellDef>Created</mat-header-cell>
+    <mat-cell *matCellDef="let product">{{ product.created_by }}</mat-cell>
+  </ng-container>
+
+  <!-- Creation date -->
+  <ng-container matColumnDef="modified_by">
+    <mat-header-cell *matHeaderCellDef>Modified</mat-header-cell>
+    <mat-cell *matCellDef="let product">{{ product.modified_by }}</mat-cell>
+  </ng-container>
+
+  <!-- Modified date -->
+  <ng-container matColumnDef="modified_on">
+    <mat-header-cell *matHeaderCellDef>Modified</mat-header-cell>
+    <mat-cell *matCellDef="let product">{{ product.modified_on }}</mat-cell>
+  </ng-container>
+
+  <!-- Languages -->
+  <ng-container matColumnDef="languages">
+    <mat-header-cell *matHeaderCellDef>Languages</mat-header-cell>
+    <mat-cell *matCellDef="let product">
+      <span [innerHTML]="product.languages"></span>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Actions -->
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+    <mat-cell *matCellDef="let product">
+        
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</table>
