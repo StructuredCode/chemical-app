@@ -19,7 +19,7 @@ export class ProductListComponent {
   #productservice = inject(ProductService);
   #dialog = inject(MatDialog);
   protected readonly productStore = inject(ProductStore);
-  displayedColumns: string[] = ['id', 'product_name', 'logo', 'created_by', 'modified_by', 'modified_on', 'languages', 'action'];
+  displayedColumns: string[] = ['id', 'product_name', 'logo', 'created_by', 'modified_by', 'modified_on', 'languages', 'action', 'companyName'];
 
   applyFilter(event: Event) {
   }
