@@ -12,7 +12,7 @@ export class ProductService {
   #http = inject(HttpClient);
 
   /**
-   * Get products from file.
+   * Load products from file.
    */
   getProducts(): Observable<Product[]> {
     return this.#http.get<{ data: Product[] }>(DATA_FOLDER + 'products.json').pipe(
@@ -21,7 +21,7 @@ export class ProductService {
   }
 
   /**
-   * Get product detail based on product id.
+   * Load product detail based on product id.
    */
   getDescription(idProduct: number): Observable<string> {
     const dataFile = DATA_FOLDER + idProduct + '.json';

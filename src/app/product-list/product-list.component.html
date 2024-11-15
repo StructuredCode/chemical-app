@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" matSort>
+<table mat-table [dataSource]="productStore.products()" matSort>
   <!-- Id -->
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
