@@ -30,7 +30,7 @@ export class ProductListComponent implements OnInit {
   openDetailsDialog(product: Product) {
     const dialogRef = this.#dialog.open(ProductDetailsComponent);
     this.#productservice.getDescription(product.id).subscribe(
-      des => dialogRef.componentInstance.details = des
+      des => dialogRef.componentInstance.details.set(des)
     );
   }
 }
