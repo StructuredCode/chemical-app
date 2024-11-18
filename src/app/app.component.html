@@ -1,1 +1,15 @@
-<router-outlet />
+<div class="sidebar">
+      <mat-nav-list>
+        <mat-list-item routerLink="/products" routerLinkActive="active-link">
+          <div class="sidebar-item">
+            <div class="sidebar-item-icon">
+                <mat-icon>science</mat-icon>
+            </div>
+            <div class="sidebar-item-text">Products</div>
+        </div>
+        </mat-list-item>
+      </mat-nav-list>
+</div>
+<div class="content">
+    <router-outlet />
+</div>

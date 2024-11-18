@@ -1,0 +1,31 @@
+$sidebar-width: 80px;
+
+.content {
+    margin-left: $sidebar-width;
+    padding: 20px;
+}
+
+.sidebar {
+    width: $sidebar-width;
+    height: 100%;
+    background-color: var(--bens-blue);
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidebar-item {
+    color: white;
+}
+
+.sidebar-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-item-text {
+    font-size: 10px;
+}
