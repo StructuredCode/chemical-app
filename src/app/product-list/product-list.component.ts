@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ProductService } from '../services/product.service';
-import { Product } from '../models/product';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,13 +9,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ProductStore } from '../store/product.store';
 import { FormsModule } from '@angular/forms';
-import { ProductVMKeys } from '../models/product-vm';
+import { ProductVM, ProductVMKeys } from '../models/product-vm';
 import { UtilityService } from '../shared/utility.service';
+import { CommonModule } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, MatButtonModule, MatDialogModule, MatInputModule, MatFormFieldModule, FormsModule],
+  imports: [MatTableModule, MatIconModule, MatButtonModule, MatDialogModule, MatInputModule, MatFormFieldModule, FormsModule, CommonModule, MatSelectModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
@@ -24,10 +25,11 @@ export class ProductListComponent {
   #productservice = inject(ProductService);
   #dialog = inject(MatDialog);
   #utilityService = inject(UtilityService);
-  protected readonly inputFilterColumns: ProductVMKeys[] = ['id','product_name', 'created_by', 'modified_by', 'languages'];
+  protected readonly inputFilterColumns: ProductVMKeys[] = ['id', 'product_name', 'created_by', 'modified_by', 'languages'];
   protected readonly displayedColumns: string[] = ['id', 'product_name', 'logo', 'companyName', 'created_by', 'modified_by', 'modified_on', 'languages', 'action'];
   protected readonly productStore = inject(ProductStore);
-  
+  protected editingId = signal<number | null>(null); // Id of current editing row.
+
   // Filter predicate for product table filtering.
   #productFilterPredicate = this.#utilityService.generateFilterPredicate(this.inputFilterColumns);
 
@@ -39,14 +41,23 @@ export class ProductListComponent {
   /**
    * Loads and opens the product details in a dialog.
    */
-  openDetailsDialog(product: Product): void {
+  openDetailsDialog(product: ProductVM): void {
     const dialogRef = this.#dialog.open(ProductDetailsComponent);
     this.#productservice.getDescription(product.id).subscribe(
       des => dialogRef.componentInstance.details.set(des)
     );
   }
 
-  deleteProduct(id:number): void {
+  deleteProduct(id: number): void {
     this.productStore.deleteProduct(id);
+  }
+
+  editProduct(id: number): void {
+    this.editingId.set(id);
+  }
+
+  saveProduct(product: ProductVM): void {
+    this.productStore.editProduct(product);
+    this.editingId.set(null);
   }
 }

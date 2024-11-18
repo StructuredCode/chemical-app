@@ -8,52 +8,91 @@
   <!-- Id -->
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-    <mat-cell *matCellDef="let product">{{ product.id }}</mat-cell>
+    <mat-cell *matCellDef="let product">
+      <span>{{ product.id }}</span>
+    </mat-cell>
   </ng-container>
 
   <!-- Name -->
   <ng-container matColumnDef="product_name">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-    <mat-cell *matCellDef="let product">{{ product.product_name }}</mat-cell>
+    <mat-cell *matCellDef="let product">
+      <span *ngIf="editingId() !== product.id">{{ product.product_name }}</span>
+      <mat-form-field *ngIf="editingId() === product.id">
+        <input matInput [(ngModel)]="product.product_name">
+      </mat-form-field>
+    </mat-cell>
   </ng-container>
 
   <!-- Company -->
   <ng-container matColumnDef="companyName">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Company</mat-header-cell>
-    <mat-cell *matCellDef="let product">{{ product.company.name }}</mat-cell>
+    <mat-cell *matCellDef="let product">
+      <span *ngIf="editingId() !== product.id">{{ product.company.name }}</span>
+      <mat-form-field *ngIf="editingId() === product.id">
+        <mat-select [(ngModel)]="product.product_company">
+          <mat-option *ngFor="let company of productStore.companies()" [value]="company.id">{{company.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-cell>
   </ng-container>
 
   <!-- Logo -->
   <ng-container matColumnDef="logo">
     <mat-header-cell *matHeaderCellDef>Logo</mat-header-cell>
     <mat-cell *matCellDef="let product">
-      <img [src]="product.logo" alt="product-logo" />
+      <span *ngIf="editingId() !== product.id">
+        <img [src]="product.logo" alt="product-logo" />
+      </span>
+      <mat-form-field *ngIf="editingId() === product.id">
+        <input type="text" matInput [(ngModel)]="product.logo">
+      </mat-form-field>
     </mat-cell>
   </ng-container>
 
   <!-- Created by -->
   <ng-container matColumnDef="created_by">
     <mat-header-cell *matHeaderCellDef>Created</mat-header-cell>
-    <mat-cell *matCellDef="let product">{{ product.created_by }}</mat-cell>
+    <mat-cell *matCellDef="let product">
+      <span *ngIf="editingId() !== product.id">{{ product.created_by }}</span>
+      <mat-form-field *ngIf="editingId() === product.id">
+        <input type="text" matInput [(ngModel)]="product.created_by">
+      </mat-form-field>
+    </mat-cell>
   </ng-container>
 
   <!-- Creation date -->
   <ng-container matColumnDef="modified_by">
     <mat-header-cell *matHeaderCellDef>Modified</mat-header-cell>
-    <mat-cell *matCellDef="let product">{{ product.modified_by }}</mat-cell>
+    <mat-cell *matCellDef="let product">
+      <span *ngIf="editingId() !== product.id">{{ product.modified_by }}</span>
+      <mat-form-field *ngIf="editingId() === product.id">
+        <input type="text" matInput [(ngModel)]="product.modified_by">
+      </mat-form-field>
+    </mat-cell>
   </ng-container>
 
   <!-- Modified date -->
   <ng-container matColumnDef="modified_on">
     <mat-header-cell *matHeaderCellDef>Modified</mat-header-cell>
-    <mat-cell *matCellDef="let product">{{ product.modified_on }}</mat-cell>
+    <mat-cell *matCellDef="let product">
+      <span *ngIf="editingId() !== product.id">{{ product.modified_on }}</span>
+      <mat-form-field *ngIf="editingId() === product.id">
+        <input type="text" matInput [(ngModel)]="product.modified_on">
+      </mat-form-field>
+    </mat-cell>
   </ng-container>
 
   <!-- Languages -->
   <ng-container matColumnDef="languages">
     <mat-header-cell *matHeaderCellDef>Languages</mat-header-cell>
     <mat-cell *matCellDef="let product">
-      <span [innerHTML]="product.languages"></span>
+      <span *ngIf="editingId() !== product.id">
+        <span [innerHTML]="product.languages"></span>
+      </span>
+      <mat-form-field *ngIf="editingId() === product.id">
+        <input type="text" matInput [(ngModel)]="product.languages">
+      </mat-form-field>
     </mat-cell>
   </ng-container>
 
@@ -61,8 +100,11 @@
   <ng-container matColumnDef="action">
     <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
     <mat-cell *matCellDef="let product">
-      <button class="button-bens-blue" mat-icon-button>
+      <button class="button-bens-blue" *ngIf="editingId() !== product.id || !editingId()" (click)="editProduct(product.id)" mat-icon-button>
         <mat-icon>edit</mat-icon>
+      </button>
+      <button class="button-bens-blue" *ngIf="editingId()===product.id" (click)="saveProduct(product)" mat-icon-button>
+        <mat-icon>save</mat-icon>
       </button>
       <button class="button-bens-red" (click)="deleteProduct(product.id)" mat-icon-button>
         <mat-icon>delete</mat-icon>

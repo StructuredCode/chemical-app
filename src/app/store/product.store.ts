@@ -9,9 +9,9 @@ import { Company } from "../models/company";
 import { ProductVM } from "../models/product-vm";
 
 export interface ProductStoreState {
-    _products: Product[]; // Internal state to hold the list of products.
-    _companies: Company[]; // Internal state to hold the list of companies.
-    _filterPredicate: (data: ProductVM, filter: string) => boolean;
+    _products: Product[]; // Holds the list of products.
+    companies: Company[]; // Holds the list of companies.
+    _productFilterPredicate: (data: ProductVM, filter: string) => boolean; //  A predicate function used to filter the products based on the specified columns and filter string. 
     filter: string
 }
 
@@ -19,11 +19,11 @@ export const ProductStore = signalStore(
     { providedIn: 'root' },
     withState<ProductStoreState>({
         _products: [],
-        _companies: [],
-        _filterPredicate: () => true,   // Default predicate that don't filter at all 
+        companies: [],
+        _productFilterPredicate: () => true,   // Default predicate that don't filter at all 
         filter: ''
     }),
-    withComputed(({ _products: products, _companies: companies }) => ({
+    withComputed(({ _products: products, companies: companies }) => ({
         /** Unfiltered array of products with associated company. */
         _productsWithCompany: computed(() => {
             return products().map(prod => ({
@@ -36,7 +36,7 @@ export const ProductStore = signalStore(
     withComputed(state => ({
         /** Filtered products. */
         products: computed(() => {
-            return state._productsWithCompany().filter(prod => { return state._filterPredicate()(prod, state.filter()) })
+            return state._productsWithCompany().filter(prod => { return state._productFilterPredicate()(prod, state.filter()) })
         })
     })),
     withMethods((state,
@@ -55,17 +55,33 @@ export const ProductStore = signalStore(
                 pipe(
                     switchMap(() => {
                         return companyService.getCompanies().pipe(
-                            tap((res: Company[]) => patchState(state, { _companies: res }))
+                            tap((res: Company[]) => patchState(state, { companies: res }))
                         )
                     })
                 )
             ),
+            /** Update filter string and associated filter predicate. */
             updateFilter(filter: string, filterPredicate?: (data: ProductVM, filter: string) => boolean) {
-                patchState(state, { filter: filter, _filterPredicate: filterPredicate });
+                patchState(state, { filter: filter, _productFilterPredicate: filterPredicate });
             },
             /** Delete product based on provided id. */
-            deleteProduct(id: number) {
-                patchState(state, { _products: state._products().filter(p => p.id !== id) })
+            deleteProduct(id: number): boolean {
+                try {
+                    patchState(state, { _products: state._products().filter(p => p.id !== id) })
+                } catch (error) {
+                    return false;
+                }
+                return true;
+            },
+            /** Edit product properties */
+            editProduct(updatedProduct: Product): boolean {
+                try {
+                    patchState(state, { _products: state._products().map(p => p.id === updatedProduct.id ? updatedProduct : p) })
+                } catch (error) {
+                    console.error(error);
+                    return false;
+                }
+                return true;
             }
         })
     ),
