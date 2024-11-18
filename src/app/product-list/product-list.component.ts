@@ -13,6 +13,7 @@ import { ProductVM, ProductVMKeys } from '../models/product-vm';
 import { UtilityService } from '../shared/utility.service';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
+import { NotificationService } from '../shared/notification.service';
 
 @Component({
   selector: 'app-product-list',
@@ -23,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class ProductListComponent {
   #productservice = inject(ProductService);
+  #toastService = inject(NotificationService);
   #dialog = inject(MatDialog);
   #utilityService = inject(UtilityService);
   protected readonly inputFilterColumns: ProductVMKeys[] = ['id', 'product_name', 'created_by', 'modified_by', 'languages'];
@@ -49,7 +51,8 @@ export class ProductListComponent {
   }
 
   deleteProduct(id: number): void {
-    this.productStore.deleteProduct(id);
+    this.productStore.deleteProduct(id) ? this.#toastService.showSuccess('Product deleted successfully!')
+      : this.#toastService.showError('Product not deleted!');
   }
 
   editProduct(id: number): void {
@@ -57,7 +60,8 @@ export class ProductListComponent {
   }
 
   saveProduct(product: ProductVM): void {
-    this.productStore.editProduct(product);
+    this.productStore.editProduct(product) ? this.#toastService.showSuccess('Product saved!')
+      : this.#toastService.showError('Product not saved!');
     this.editingId.set(null);
   }
 }

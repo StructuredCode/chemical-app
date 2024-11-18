@@ -41,49 +41,50 @@ export const ProductStore = signalStore(
     })),
     withMethods((state,
         productService = inject(ProductService),
-        companyService = inject(ComapnyService)) => ({
-            _loadProducts: rxMethod<void>(
-                pipe(
-                    switchMap(() => {
-                        return productService.getProducts().pipe(
-                            tap((res: Product[]) => patchState(state, { _products: res }))
-                        )
-                    })
-                )
-            ),
-            _loadCompanies: rxMethod<void>(
-                pipe(
-                    switchMap(() => {
-                        return companyService.getCompanies().pipe(
-                            tap((res: Company[]) => patchState(state, { companies: res }))
-                        )
-                    })
-                )
-            ),
-            /** Update filter string and associated filter predicate. */
-            updateFilter(filter: string, filterPredicate?: (data: ProductVM, filter: string) => boolean) {
-                patchState(state, { filter: filter, _productFilterPredicate: filterPredicate });
-            },
-            /** Delete product based on provided id. */
-            deleteProduct(id: number): boolean {
-                try {
-                    patchState(state, { _products: state._products().filter(p => p.id !== id) })
-                } catch (error) {
-                    return false;
-                }
-                return true;
-            },
-            /** Edit product properties */
-            editProduct(updatedProduct: Product): boolean {
-                try {
-                    patchState(state, { _products: state._products().map(p => p.id === updatedProduct.id ? updatedProduct : p) })
-                } catch (error) {
-                    console.error(error);
-                    return false;
-                }
-                return true;
+        companyService = inject(ComapnyService),
+    ) => ({
+        _loadProducts: rxMethod<void>(
+            pipe(
+                switchMap(() => {
+                    return productService.getProducts().pipe(
+                        tap((res: Product[]) => patchState(state, { _products: res }))
+                    )
+                })
+            )
+        ),
+        _loadCompanies: rxMethod<void>(
+            pipe(
+                switchMap(() => {
+                    return companyService.getCompanies().pipe(
+                        tap((res: Company[]) => patchState(state, { companies: res }))
+                    )
+                })
+            )
+        ),
+        /** Update filter string and associated filter predicate. */
+        updateFilter(filter: string, filterPredicate?: (data: ProductVM, filter: string) => boolean) {
+            patchState(state, { filter: filter, _productFilterPredicate: filterPredicate });
+        },
+        /** Delete product based on provided id. */
+        deleteProduct(id: number): boolean {
+            try {
+                patchState(state, { _products: state._products().filter(p => p.id !== id) })
+            } catch (error) {
+
+                return false;
             }
-        })
+            return true;
+        },
+        /** Edit product properties */
+        editProduct(updatedProduct: Product): boolean {
+            try {
+                patchState(state, { _products: state._products().map(p => p.id === updatedProduct.id ? updatedProduct : p) })
+            } catch (error) {
+                return false;
+            }
+            return true;
+        }
+    })
     ),
     withHooks({
         onInit({ _loadProducts, _loadCompanies }) {
