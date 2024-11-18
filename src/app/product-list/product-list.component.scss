@@ -9,3 +9,12 @@ button.button-bens-blue:hover {
 button.button-bens-red:hover {
     color: var(--bens-red);
 }
+
+.product-input-filter-container {
+    display: flex;
+    justify-content: center;
+}
+
+.product-input-filter {
+    width: 100%;
+}

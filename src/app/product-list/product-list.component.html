@@ -1,3 +1,9 @@
+<div class="product-input-filter-container">
+  <mat-form-field class="product-input-filter">
+    <mat-label>Product filter</mat-label>
+    <input matInput [value]="productStore.filter()" (keyup)="applyFilter($event)" [placeholder]="this.inputFilterColumns.join(', ')" #input />
+  </mat-form-field>
+</div>
 <table mat-table [dataSource]="productStore.products()" matSort>
   <!-- Id -->
   <ng-container matColumnDef="id">
