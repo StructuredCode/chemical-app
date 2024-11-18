@@ -39,14 +39,14 @@ export class ProductListComponent {
   /**
    * Loads and opens the product details in a dialog.
    */
-  openDetailsDialog(product: Product) {
+  openDetailsDialog(product: Product): void {
     const dialogRef = this.#dialog.open(ProductDetailsComponent);
     this.#productservice.getDescription(product.id).subscribe(
       des => dialogRef.componentInstance.details.set(des)
     );
   }
 
-  deleteProduct(product: Product) {
-    this.productStore.deleteProduct(product.id);
+  deleteProduct(id:number): void {
+    this.productStore.deleteProduct(id);
   }
 }
