@@ -45,4 +45,8 @@ export class ProductListComponent {
       des => dialogRef.componentInstance.details.set(des)
     );
   }
+
+  deleteProduct(product: Product) {
+    this.productStore.deleteProduct(product.id);
+  }
 }

@@ -62,6 +62,10 @@ export const ProductStore = signalStore(
             ),
             updateFilter(filter: string, filterPredicate?: (data: ProductVM, filter: string) => boolean) {
                 patchState(state, { filter: filter, _filterPredicate: filterPredicate });
+            },
+            /** Delete product based on provided id. */
+            deleteProduct(id: number) {
+                patchState(state, { _products: state._products().filter(p => p.id !== id) })
             }
         })
     ),
