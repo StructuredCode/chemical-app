@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Company } from '../models/company';
+import { Company } from '../../models/company';
 
 const DATA_FOLDER = 'assets/'
 

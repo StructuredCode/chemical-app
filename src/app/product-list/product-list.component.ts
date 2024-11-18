@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { ProductService } from '../services/product.service';
+import { ProductService } from './services/product.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,7 +7,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ProductStore } from '../store/product.store';
+import { ProductStore } from './store/product.store';
 import { FormsModule } from '@angular/forms';
 import { ProductVM, ProductVMKeys } from '../models/product-vm';
 import { UtilityService } from '../shared/utility.service';

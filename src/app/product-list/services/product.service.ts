@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Product } from '../models/product';
+import { Product } from '../../models/product';
 import { Observable, map } from 'rxjs';
 
 const DATA_FOLDER = 'assets/'

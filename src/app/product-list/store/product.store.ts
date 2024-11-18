@@ -1,12 +1,12 @@
 import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from "@ngrx/signals"
-import { Product } from "../models/product"
+import { Product } from "../../models/product"
 import { computed, inject } from "@angular/core"
 import { ProductService } from "../services/product.service"
 import { rxMethod } from "@ngrx/signals/rxjs-interop";
 import { pipe, switchMap, tap } from "rxjs";
 import { ComapnyService } from "../services/comapny.service";
-import { Company } from "../models/company";
-import { ProductVM } from "../models/product-vm";
+import { Company } from "../../models/company";
+import { ProductVM } from "../../models/product-vm";
 
 export interface ProductStoreState {
     _products: Product[]; // Holds the list of products.
