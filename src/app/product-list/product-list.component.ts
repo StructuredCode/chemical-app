@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ProductService } from './services/product.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,7 +20,8 @@ import { NotificationService } from '../shared/notification.service';
   standalone: true,
   imports: [MatTableModule, MatIconModule, MatButtonModule, MatDialogModule, MatInputModule, MatFormFieldModule, FormsModule, CommonModule, MatSelectModule],
   templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.scss'
+  styleUrl: './product-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListComponent {
   #productservice = inject(ProductService);
