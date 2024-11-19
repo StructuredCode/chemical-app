@@ -19,7 +19,19 @@ button.button-bens-red:hover {
     width: 100%;
 }
 
-  table {
+table {
     width: 100%;
     table-layout: fixed;
-  }
+}
+
+.product-list-logo {
+    width: 100px !important;
+}
+
+.mat-column-logo {
+    flex: 0 0 10% !important;
+}
+
+.mat-column-action {
+    min-width: 150px; /* Keeps action buttons on screen. */
+}

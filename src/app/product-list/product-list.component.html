@@ -42,7 +42,7 @@
     <mat-header-cell *matHeaderCellDef>Logo</mat-header-cell>
     <mat-cell *matCellDef="let product">
       <span *ngIf="editingId() !== product.id">
-        <img [src]="product.logo" alt="product-logo" />
+        <img class="product-list-logo" [src]="product.logo" alt="product-logo" />
       </span>
       <mat-form-field *ngIf="editingId() === product.id">
         <input type="text" matInput [(ngModel)]="product.logo">
