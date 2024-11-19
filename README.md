@@ -10,6 +10,14 @@ This Angular project implements a simple **Chemical App** using Angular Material
 
 **Note**: There is no backend provided. All data is stored in memory.
 
+---
+
+### **Live Demo**
+
+You can try the live demo of the app here:  
+[Live Demo](https://nice-ocean-0efa63703.5.azurestaticapps.net)
+
+---
 
 ### **Features Snapshot**
 ![Chemical App Features](chemical-app-features.png)
